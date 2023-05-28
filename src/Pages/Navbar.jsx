@@ -12,152 +12,109 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import logo from '../Images/logo.svg';
+import currency from "../Images/currency.svg";
+// import { makeStyles } from "@material-ui/core/styles";
+import { useEffect,useState,useRef } from "react";
+import "../Pages/Navbar.css";
+import { Link } from "react-router-dom";
 
-const pagesLeft = ["Buy", "Rent", "Sell", "Home Loans", "Agent Finder"];
-const pagesRight = ["Manage Rentals", "Advertise", "Help", "Sign in"];
+
+// const useStyles = makeStyles((theme) => ({
+//     root: {
+//         flexGrow: 1,
+//     },
+//     menuButton: {
+//         marginRight: theme.spacing(2),
+//         color: 'black'
+//     },
+//     title: {
+//         flexGrow: 1,
+//         color: 'black'
+//     },
+//     appBarTransparent: {
+//         backgroundColor: 'rgba(67, 129, 168,0.5)'
+//     },
+//     appBarSolid: {
+//         backgroundColor: 'rgba(67, 129, 168)'
+//     }
+// }));
+
+
 
 function Navbar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  //  const classes = useStyles();
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+   const [navBackground, setNavBackground] = useState("appBarTransparent");
+   const navRef = useRef();
+   navRef.current = navBackground;
+   useEffect(() => {
+     const handleScroll = () => {
+       const show = window.scrollY > 50;
+       if (show) {
+         setNavBackground("appBarSolid");
+       } else {
+         setNavBackground("appBarTransparent");
+       }
+     };
+     document.addEventListener("scroll", handleScroll);
+     return () => {
+       document.removeEventListener("scroll", handleScroll);
+     };
+   }, []);
+ 
 
   return (
-    <AppBar
-      position="static"
-      color="inherit"
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        height: "80px",
-        borderBottom: "1px solid rgb(216, 216, 216)",
-        bgcolor: "white",
-        boxShadow: "none",
-      }}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Box
-            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-            position={"absolute"}
-            left={"45%"}
-            display={"flex"}
-            alignItems={"center"}
-            z-index={"2"}>
-            <img
-              src="https://s.zillowstatic.com/pfs/static/z-logo-default.svg"
-              width={"160px"}
-              height={"35px"}
-            />
+    <Box
+      className={navRef.current}
+      position={"fixed"}
+      sx={{ zIndex: "30" }}
+      display={"flex"}
+      justifyContent={"center"}
+      width={"100%"}>
+      <Box
+        width={"100%"}
+        display={"flex"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+        padding={"0 1rem"}
+        height={"5rem"}
+        sx={{ maxWidth: "80rem", minHeight: "5rem" }}>
+        <Link to="/">
+          <Box>
+            <img src={logo} width={"80%"} height={"100%"} />
+          </Box>
+        </Link>
+        <Box display={"flex"} color="white" justifyContent={"center"}>
+          <Typography fontSize={"1.25rem"} fontWeight={"800"} mr="25px">
+            Study
+          </Typography>
+          <Typography fontSize={"1.25rem"} fontWeight={"800"} mr="25px">
+            Destinations
+          </Typography>
+          <Typography fontSize={"1.25rem"} fontWeight={"800"}>
+            Resources
+          </Typography>
+        </Box>
+        <Box
+          display={"flex"}
+          color="white"
+          alignItems={"center"}
+          justifyContent={"center"}>
+          <Box sx={{ cursor: "pointer" }}>
+            <img src={currency} width={"24px"} height={"24px"} />
           </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit">
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}>
-              {pagesLeft.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-
-              {pagesRight.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-
-          <Box
-            sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
-            position={"absolute"}
-            left={"45%"}
-            display={"flex"}
-            alignItems={"center"}
-            z-index={"2"}>
-            <img
-              src="https://s.zillowstatic.com/pfs/static/z-logo-default.svg"
-              width={"160px"}
-              height={"35px"}
-            />
-          </Box>
-
-          <Box
-            display={"flex"}
-            justifyContent={"space-between"}
-            width={"100%"}
-            max-width={"1280px"}>
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              {pagesLeft.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{
-                    my: 2,
-                    color: "black",
-                    display: "block",
-                    "&:hover": {
-                      backgroundColor: "none",
-                      borderColor: "none",
-                      boxShadow: "none",
-                      color: "#006AFF",
-                    },
-                  }}>
-                  {page}
-                </Button>
-              ))}
-            </Box>
-
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              {pagesRight.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "black", display: "block" }}>
-                  {page}
-                </Button>
-              ))}
-            </Box>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            sx={{ ml: 5 }}>
+            <MenuIcon />
+          </IconButton>
+        </Box>
+      </Box>
+    </Box>
   );
 }
 export default Navbar;

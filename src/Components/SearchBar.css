@@ -1,0 +1,10 @@
+select{
+    border: none;
+    width:'100px';
+    font-size:'12px'
+}
+
+.option{
+  border: 2px solid red;
+    font-size: '40px';
+}

@@ -1,154 +1,265 @@
-import React from 'react'
+import React,{useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import Grid from "@mui/material/Grid";
+
 import Typography from "@mui/material/Typography";
-import parse from "autosuggest-highlight/parse";
-import { debounce } from "@mui/material/utils";
 
-const GOOGLE_MAPS_API_KEY = "AIzaSyDGPKr8n4_dL2kKwToKWjjYPvw9hXdt9Rg";
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 
-function loadScript(src, position, id) {
-  if (!position) {
-    return;
-  }
+import InputBase from "@mui/material/InputBase";
+import Divider from "@mui/material/Divider";
 
-  const script = document.createElement("script");
-  script.setAttribute("async", "");
-  script.setAttribute("id", id);
-  script.src = src;
-  position.appendChild(script);
+import SearchIcon from "@mui/icons-material/Search";
+
+import '../Components/SearchBar.css';
+import Button from "@mui/material/Button";
+
+
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}>
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
 }
 
-const autocompleteService = { current: null };
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
+
 
 const SearchBar = () => {
 
-     const [value, setValue] = React.useState(null);
-     const [inputValue, setInputValue] = React.useState("");
-     const [options, setOptions] = React.useState([]);
-     const loaded = React.useRef(false);
+  const [query,setQuery] = useState('')
+  const navigate = useNavigate()
 
-     if (typeof window !== "undefined" && !loaded.current) {
-       if (!document.querySelector("#google-maps")) {
-         loadScript(
-           `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`,
-           document.querySelector("head"),
-           "google-maps"
-         );
-       }
 
-       loaded.current = true;
-     }
+  const universities = [
+    "UOWD",
+    "Murdoch",
+    "De Montfort",
+    "Heriot-Watt",
+    "RIT",
+    "Birmingham",
+  ];
 
-     const fetch = React.useMemo(
-       () =>
-         debounce((request, callback) => {
-           autocompleteService.current.getPlacePredictions(request, callback);
-         }, 400),
-       []
-     );
+  const courses = [
+    "Computer Science",
+    "Business",
+    "AMBA",
+    "Engineering",
+    "Science",
+    "Communications",
+  ];
 
-     React.useEffect(() => {
-       let active = true;
 
-       if (!autocompleteService.current && window.google) {
-         autocompleteService.current =
-           new window.google.maps.places.AutocompleteService();
-       }
-       if (!autocompleteService.current) {
-         return undefined;
-       }
 
-       if (inputValue === "") {
-         setOptions(value ? [value] : []);
-         return undefined;
-       }
 
-       fetch({ input: inputValue }, (results) => {
-         if (active) {
-           let newOptions = [];
+     const [value, setValue] = React.useState(0);
 
-           if (value) {
-             newOptions = [value];
-           }
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
-           if (results) {
-             newOptions = [...newOptions, ...results];
-           }
+  const handleSearch=()=>{
+console.log(query)
+navigate(`/movie/${query}`);
+  }
 
-           setOptions(newOptions);
-         }
-       });
+   const handleQuery = (e) => {
+    setQuery(e.target.value)
+   };
 
-      
-
-       return () => {
-         active = false;
-       };
-     }, [value, inputValue, fetch]);
+  
+     
   return (
-    <Autocomplete
-      id="google-map-demo"
-      sx={{ width: 300 }}
-      getOptionLabel={(option) =>
-        typeof option === "string" ? option : option.description
-      }
-      filterOptions={(x) => x}
-      options={options}
-      autoComplete
-      includeInputInList
-      filterSelectedOptions
-      value={value}
-      noOptionsText="No locations"
-      onChange={(event, newValue) => {
-        setOptions(newValue ? [newValue, ...options] : options);
-        setValue(newValue);
-      }}
-      onInputChange={(event, newInputValue) => {
-        setInputValue(newInputValue);
-      }}
-      renderInput={(params) => (
-        <TextField {...params} label="Add a location" fullWidth />
-      )}
-      renderOption={(props, option) => {
-        const matches =
-          option.structured_formatting.main_text_matched_substrings || [];
+    <Box
+      width={"100%"}
+      sx={{
+        display: "flex",
+        mt: "30px",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+      }}>
+      <Box>
+        <Tabs
+          textColor="black"
+          selectionFollowsFocus="false"
+          TabIndicatorProps={{
+            hidden: "true",
+            sx: { backgroundColor: "white", height: 3, width: "10px" },
+          }}
+          sx={{
+            "& button": {
+              textTransform: "unset",
+              mx: "80px",
+              opacity: 0.5,
+              fontWeight: "600",
+              fontSize: "1rem",
+            },
+            "& button.Mui-selected": {
+              opacity: 1,
+              borderBottom: "4px solid white",
+            },
+            //"& button:after": {
+            //   content: `" "`,
+            //   position: "absolute",
+            //   height: "10px",
+            //   width: "40px",
+            //   backgroundColor: "white",
+            //   borderRadius: "5px",
+            // },
+          }}
+          value={value}
+          onChange={handleChange}>
+          <Tab label="Universities" {...a11yProps(0)} />
+          <Tab label="Courses" {...a11yProps(1)} />
+        </Tabs>
+      </Box>
+      <TabPanel value={value} index={0}>
+        <Box
+          height="40px"
+          borderRadius={"3.75rem"}
+          width={{ lg: "48rem", xs: "24rem" }}
+          bgcolor={"rgb(255, 255, 255)"}
+          sx={{
+            display: "grid",
+            alignItems: "center",
+            gridTemplateColumns: "auto 0.5rem 1fr auto",
+            columnGap: "0.5rem",
+          }}
+          padding={"0.25rem 0.25rem 0.25rem 1.5rem"}
+          border={"0.125rem solid rgb(238, 240, 241)"}>
+          <Box>
+            <select>
+              <option disabled selected>
+                Edu.Level
+              </option>
+              <option>Undergraduvate</option>
+              <option>Postgraduvate</option>
+              <option>Diploma</option>
+              <option>Foundation</option>
+              <option>Phd</option>
+            </select>
+          </Box>
 
-        const parts = parse(
-          option.structured_formatting.main_text,
-          matches.map((match) => [match.offset, match.offset + match.length])
-        );
+          <Divider orientation="vertical" variant="middle" flexItem />
 
-        return (
-          <li {...props}>
-            <Grid container alignItems="center">
-              <Grid item sx={{ display: "flex", width: 44 }}>
-                <LocationOnIcon sx={{ color: "text.secondary" }} />
-              </Grid>
-              <Grid
-                item
-                sx={{ width: "calc(100% - 44px)", wordWrap: "break-word" }}>
-                {parts.map((part, index) => (
-                  <Box
-                    key={index}
-                    component="span"
-                    sx={{ fontWeight: part.highlight ? "bold" : "regular" }}>
-                    {part.text}
-                  </Box>
-                ))}
+          <InputBase
+            sx={{ ml: 1 }}
+            placeholder="Start Your search"
+            inputProps={{ "aria-label": "search google maps" }} onChange={handleQuery}
+          />
 
-                <Typography variant="body2" color="text.secondary">
-                  {option.structured_formatting.secondary_text}
-                </Typography>
-              </Grid>
-            </Grid>
-          </li>
-        );
-      }}
-    />
+          <Box>
+            <Button
+              sx={{ borderRadius: "40px" }}
+              variant="contained"
+              startIcon={<SearchIcon />} onClick={handleSearch}>
+              Search
+            </Button>
+          </Box>
+        </Box>
+
+        <Box position={"absolute"} mx="20px" mt="30px" display={"flex"}>
+          <Typography>Suggested:</Typography>
+          <Box display={"flex"} flexWrap={"wrap"} color={"#BCC5D3"}>
+            {universities.map((name) => {
+              return <Typography mx="10px">{name}</Typography>;
+            })}
+          </Box>
+        </Box>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <Box
+          height="40px"
+          borderRadius={"3.75rem"}
+          width={{ lg: "48rem", xs: "24rem" }}
+          bgcolor={"rgb(255, 255, 255)"}
+          sx={{
+            display: "grid",
+            alignItems: "center",
+            gridTemplateColumns: "auto 0.5rem 1fr auto",
+            columnGap: "0.5rem",
+          }}
+          padding={"0.25rem 0.25rem 0.25rem 1.5rem"}
+          border={"0.125rem solid rgb(238, 240, 241)"}>
+          <Box>
+            <select>
+              <option disabled selected>
+                Edu.Level
+              </option>
+              <option>Undergraduvate</option>
+              <option>Postgraduvate</option>
+              <option>Diploma</option>
+              <option>Foundation</option>
+              <option>Phd</option>
+            </select>
+          </Box>
+
+          <Divider orientation="vertical" variant="middle" flexItem />
+
+          <InputBase
+            sx={{ ml: 1 }}
+            placeholder="Start Your search"
+            inputProps={{ "aria-label": "search google maps" }}
+          />
+
+          <Box>
+            <Button
+              sx={{ borderRadius: "40px" }}
+              variant="contained"
+              startIcon={<SearchIcon />}>
+              Search
+            </Button>
+          </Box>
+        </Box>
+
+        <Box position={"absolute"} mx="20px" mt="30px" display={"flex"}>
+          <Typography>Suggested:</Typography>
+          <Box display={"flex"} flexWrap={"wrap"} color={"#BCC5D3"}>
+            {courses.map((name) => {
+              return <Typography mx="10px">{name}</Typography>;
+            })}
+          </Box>
+        </Box>
+      </TabPanel>
+    </Box>
   );
 }
 
