@@ -1,23 +1,15 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
+
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
+
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+
 import logo from '../Images/logo.svg';
-import currency from "../Images/currency.svg";
-// import { makeStyles } from "@material-ui/core/styles";
+
 import { useEffect,useState,useRef } from "react";
 import "../Pages/Navbar.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import Link from "@mui/material/Link";
 
 
 // const useStyles = makeStyles((theme) => ({
@@ -80,39 +72,49 @@ function Navbar() {
         padding={"0 1rem"}
         height={"5rem"}
         sx={{ maxWidth: "80rem", minHeight: "5rem" }}>
-        <Link to="/">
+        <Link href="/">
           <Box>
             <img src={logo} width={"80%"} height={"100%"} />
           </Box>
         </Link>
         <Box display={"flex"} color="white" justifyContent={"center"}>
-          <Typography fontSize={"1.25rem"} fontWeight={"800"} mr="25px">
+          <Typography fontSize={"1.25rem"} fontWeight={"800"} mr="35px">
             Study
           </Typography>
-          <Typography fontSize={"1.25rem"} fontWeight={"800"} mr="25px">
-            Destinations
+          <Typography fontSize={"1.25rem"} fontWeight={"800"} mr="35px">
+            Plans
           </Typography>
-          <Typography fontSize={"1.25rem"} fontWeight={"800"}>
+          <Typography fontSize={"1.25rem"} fontWeight={"800"} mr="35px">
             Resources
           </Typography>
+          <Link href="/sports" underline="none">
+            <Typography color={'white'} fontSize={"1.25rem"} fontWeight={"800"} mr="35px">
+              Sports
+            </Typography>
+          </Link>
         </Box>
-        <Box
-          display={"flex"}
-          color="white"
-          alignItems={"center"}
-          justifyContent={"center"}>
-          <Box sx={{ cursor: "pointer" }}>
+        <Link href="/login" underline="none">
+          {" "}
+          <Box
+            display={"flex"}
+            color="white"
+            alignItems={"center"}
+            justifyContent={"center"}
+            mr="65px">
+            {/* <Box sx={{ cursor: "pointer" }}>
             <img src={currency} width={"24px"} height={"24px"} />
-          </Box>
+          </Box> */}
 
-          <IconButton
+            {/* <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             sx={{ ml: 5 }}>
             <MenuIcon />
-          </IconButton>
-        </Box>
+          </IconButton> */}
+            <Typography>Login</Typography>
+          </Box>
+        </Link>
       </Box>
     </Box>
   );

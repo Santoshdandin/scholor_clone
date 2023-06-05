@@ -87,7 +87,7 @@ const Count = () => {
           fontSize={"1.5rem"}
           fontWeight={700}
           sx={{ wordWrap: "break-word" }}>
-          We are making education more accessible for everyone
+          We are making software career more accecible to everybody areer
         </Typography>
         <Typography
           color={"rgb(97, 97, 97)"}
@@ -109,6 +109,7 @@ const Count = () => {
         position={"relative"}>
         <Box
           sx={{
+            minWidth: "14rem",
             borderRadius: "1.25rem",
             border: "0.5rem solid rgb(238, 240, 241)",
             display: "grid",
@@ -134,6 +135,7 @@ const Count = () => {
 
         <Box
           sx={{
+            minWidth: "14rem",
             borderRadius: "1.25rem",
             border: "0.5rem solid rgb(238, 240, 241)",
             display: "grid",
@@ -146,19 +148,20 @@ const Count = () => {
             fontSize={"2rem"}
             fontWeight={700}
             textAlign={"center"}>
-            USD 91.4M+
+            1500+
           </Typography>
           <Typography
             color={"rgb(97, 97, 97)"}
             fontSize={"1rem"}
             fontWeight={600}
             textAlign={"center"}>
-            Sholorships Applied For
+            Students Trained
           </Typography>
         </Box>
 
         <Box
           sx={{
+            minWidth: "14rem",
             borderRadius: "1.25rem",
             border: "0.5rem solid rgb(238, 240, 241)",
             display: "grid",
@@ -171,14 +174,14 @@ const Count = () => {
             fontSize={"2rem"}
             fontWeight={700}
             textAlign={"center"}>
-            41000+
+            1458
           </Typography>
           <Typography
             color={"rgb(97, 97, 97)"}
             fontSize={"1rem"}
             fontWeight={600}
             textAlign={"center"}>
-            Courses Available
+            Students Placed
           </Typography>
         </Box>
       </Box>

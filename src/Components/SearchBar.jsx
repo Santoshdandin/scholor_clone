@@ -68,22 +68,19 @@ const SearchBar = () => {
   const navigate = useNavigate()
 
 
-  const universities = [
-    "UOWD",
-    "Murdoch",
-    "De Montfort",
-    "Heriot-Watt",
-    "RIT",
-    "Birmingham",
+  const technologies = [
+    "Javascript",
+    "HTML",
+  "React js",
+  "Node js",
+
   ];
 
   const courses = [
-    "Computer Science",
-    "Business",
-    "AMBA",
-    "Engineering",
-    "Science",
-    "Communications",
+    "Full stack developer",
+    "ML Engineering",
+    "Frontend",
+    "Backend",
   ];
 
 
@@ -147,7 +144,7 @@ navigate(`/movie/${query}`);
           }}
           value={value}
           onChange={handleChange}>
-          <Tab label="Universities" {...a11yProps(0)} />
+          <Tab label="Technologies" {...a11yProps(0)} />
           <Tab label="Courses" {...a11yProps(1)} />
         </Tabs>
       </Box>
@@ -155,17 +152,17 @@ navigate(`/movie/${query}`);
         <Box
           height="40px"
           borderRadius={"3.75rem"}
-          width={{ lg: "48rem", xs: "24rem" }}
+          width={{ lg: "40rem", xs: "20rem" }}
           bgcolor={"rgb(255, 255, 255)"}
           sx={{
             display: "grid",
             alignItems: "center",
-            gridTemplateColumns: "auto 0.5rem 1fr auto",
+            gridTemplateColumns: " 1fr auto",
             columnGap: "0.5rem",
           }}
           padding={"0.25rem 0.25rem 0.25rem 1.5rem"}
           border={"0.125rem solid rgb(238, 240, 241)"}>
-          <Box>
+          {/* <Box>
             <select>
               <option disabled selected>
                 Edu.Level
@@ -176,21 +173,23 @@ navigate(`/movie/${query}`);
               <option>Foundation</option>
               <option>Phd</option>
             </select>
-          </Box>
+          </Box> */}
 
-          <Divider orientation="vertical" variant="middle" flexItem />
+          {/* <Divider orientation="vertical" variant="middle" flexItem /> */}
 
           <InputBase
             sx={{ ml: 1 }}
             placeholder="Start Your search"
-            inputProps={{ "aria-label": "search google maps" }} onChange={handleQuery}
+            inputProps={{ "aria-label": "search google maps" }}
+            onChange={handleQuery}
           />
 
           <Box>
             <Button
               sx={{ borderRadius: "40px" }}
               variant="contained"
-              startIcon={<SearchIcon />} onClick={handleSearch}>
+              startIcon={<SearchIcon />}
+              onClick={handleSearch}>
               Search
             </Button>
           </Box>
@@ -199,7 +198,7 @@ navigate(`/movie/${query}`);
         <Box position={"absolute"} mx="20px" mt="30px" display={"flex"}>
           <Typography>Suggested:</Typography>
           <Box display={"flex"} flexWrap={"wrap"} color={"#BCC5D3"}>
-            {universities.map((name) => {
+            {technologies.map((name) => {
               return <Typography mx="10px">{name}</Typography>;
             })}
           </Box>
@@ -209,17 +208,17 @@ navigate(`/movie/${query}`);
         <Box
           height="40px"
           borderRadius={"3.75rem"}
-          width={{ lg: "48rem", xs: "24rem" }}
+          width={{ lg: "40rem", xs: "20rem" }}
           bgcolor={"rgb(255, 255, 255)"}
           sx={{
             display: "grid",
             alignItems: "center",
-            gridTemplateColumns: "auto 0.5rem 1fr auto",
+            gridTemplateColumns: " 1fr auto",
             columnGap: "0.5rem",
           }}
           padding={"0.25rem 0.25rem 0.25rem 1.5rem"}
           border={"0.125rem solid rgb(238, 240, 241)"}>
-          <Box>
+          {/* <Box>
             <select>
               <option disabled selected>
                 Edu.Level
@@ -230,9 +229,9 @@ navigate(`/movie/${query}`);
               <option>Foundation</option>
               <option>Phd</option>
             </select>
-          </Box>
+          </Box> */}
 
-          <Divider orientation="vertical" variant="middle" flexItem />
+          {/* <Divider orientation="vertical" variant="middle" flexItem /> */}
 
           <InputBase
             sx={{ ml: 1 }}

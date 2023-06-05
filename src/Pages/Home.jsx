@@ -91,11 +91,10 @@ function Home() {
               fontSize={"1.875rem"}
               fontWeight={700}
               sx={{ textShadow: "0 0.25rem 0.25rem rgb(0 0 0 / 25%)" }}>
-              Find your Dream University
+              Find your Dream Technology Career
             </Typography>
             <Typography fontSize={"1rem"} fontWeight={600} mt={"8px"}>
-              Secure end to end admissions support, with a guaranteed
-              scholarship
+              Secure end to end training with a Guaranteed job
             </Typography>
 
             <Box width={"100%"}>
@@ -243,7 +242,7 @@ function Home() {
               fontSize={"2.25rem"}
               fontWeight={600}
               component="span">
-              Give your university application a
+              Give your career start a big
               <Box
                 component="span"
                 sx={{
