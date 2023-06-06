@@ -193,8 +193,8 @@ const Footer = () => {
         </Box>
       </Box>
 
-      <Box>
-        <Box display={"flex"} alignItems={"center"}>
+      <Box width={'100%'}>
+        <Box display={"flex"} width={'100%'} alignItems={"center"} >
           <img src={footer1} width={"100%"} height={"330px"} />
         </Box>
 

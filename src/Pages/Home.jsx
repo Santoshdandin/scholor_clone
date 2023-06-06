@@ -16,6 +16,7 @@ import SearchBar from "../Components/SearchBar";
 import News from "../Components/News";
 import Steps from "../Components/Steps";
 import Count from "../Components/Count";
+import Navbar from "./Navbar";
 
 
 
@@ -26,6 +27,7 @@ function Home() {
   
   return (
     <Box>
+      <Navbar />
       {/* Hero Section */}
       <Box
         sx={{
@@ -111,8 +113,8 @@ function Home() {
             flexDirection={"column"}
             alignItems={"center"}
             zIndex={"10"}
-            overflow={"hidden"}>
-            <img src={scroll} />
+            overflow={"hidden"} >
+            <img src={scroll} width={'100%'} />
             <Box
               position={"absolute"}
               display={"flex"}

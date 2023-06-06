@@ -7,10 +7,10 @@ import ProductList from "./Pages/Sports.jsx"
 function App() {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <Allroutes />
       <Footer />
-      {/* <ProductList /> */}
+      
     </div>
   );
 }

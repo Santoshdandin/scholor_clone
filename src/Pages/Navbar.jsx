@@ -34,7 +34,7 @@ import Link from "@mui/material/Link";
 
 
 
-function Navbar() {
+function Navbar({background}) {
   //  const classes = useStyles();
 
    const [navBackground, setNavBackground] = useState("appBarTransparent");

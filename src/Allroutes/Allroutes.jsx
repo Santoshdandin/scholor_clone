@@ -5,6 +5,7 @@ import Movies from '../Pages/Movies'
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
 import ProductList from "../Pages/Sports.jsx";
+import Technology from '../Pages/Technology';
 
 function Allroutes() {
   return (
@@ -13,6 +14,7 @@ function Allroutes() {
       <Route path="/movie/:name" element={<Movies />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/register" element={<Register />}></Route>
+      <Route path="/technology/:title" element={<Technology />}></Route>
       <Route path="/sports" element={<ProductList />}></Route>
     </Routes>
   );
