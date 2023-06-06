@@ -94,7 +94,7 @@ const SearchBar = () => {
 
   const handleSearch=()=>{
 console.log(query)
-navigate(`/movie/${query}`);
+navigate(`/technology/${query}`);
   }
 
    const handleQuery = (e) => {

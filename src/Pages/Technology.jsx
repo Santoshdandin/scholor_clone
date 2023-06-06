@@ -5,27 +5,30 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import logo from "../Images/logo.svg";
 import "../Pages/Home.css";
+import { useParams } from "react-router-dom";
+
 
 import Card from '@mui/joy/Card';
 import CardCover from '@mui/joy/CardCover';
-import CardContent from '@mui/joy/CardContent';
 
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-import MarkEmailUnreadIcon from "@mui/icons-material/MarkEmailUnread";
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
 
-import scroll from "../Images/scroll.svg";
-import flight from "../Images/flight.svg";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-import SearchBar from "../Components/SearchBar";
 import Link from "@mui/material/Link";
 
+
 const Technology = () => {
+
+const params = useParams();
+
   const eduLevel = ["Foundation", "Undergraduvation", "Postgraduvate"];
 
   const videos = ["https://ucpbucket.s3.us-east-2.amazonaws.com/Production/UniImages/MultimediaAssets/Videos/67_MurdochUniversityDubai_MultimediaVideo_1684834762925-Welcome-to-Murdoch-University-Dubai.mp4?time=1684955267418"]
   return (
-    <Box>
+    <Box bgcolor={'#e5e5e5'} border={'0.5px solid transparent'}>
       {/* Navbar */}
 
       <Box
@@ -197,7 +200,7 @@ const Technology = () => {
                   fontWeight={700}
                   lineHeight={"3rem"}
                 >
-                  Murdoch University Dubai
+                  {params.title}
                 </Typography>
                 <Box>
                   <Typography
@@ -643,7 +646,7 @@ const Technology = () => {
               content: `" "`,
               position: "absolute",
               bottom: "0px",
-              left: "1.5rem",
+              left: "0px",
               height: "0.25rem",
               width: "5.25rem",
               borderRadius: "0.25rem",
@@ -687,7 +690,78 @@ const Technology = () => {
         </Box>
       </Box>
 
+
+      {/* Things You Should Know */}
+
+      <Box
+        margin={"auto"}
+        mt={"48px"}
+        width={"100%"}
+        height={"100%"}
+        alignSelf={"center"}
+        maxWidth={"1168px"}
+      >
+        <Typography
+          position={"relative"}
+          color={"rgb(30, 40, 51)"}
+          fontSize={{ xs: "1.5rem", md: "2.5rem" }}
+          textAlign={"left"}
+          marginBottom={"1rem"}
+         
+          fontWeight={700}
+          sx={{
+            ":after": {
+              content: `" "`,
+              position: "absolute",
+              bottom: "0px",
+              left: "0px",
+              height: "0.25rem",
+              width: "5.25rem",
+              borderRadius: "0.25rem",
+              background: "rgb(32, 110, 244)",
+            },
+          }}
+        >
+          Things You Should Know
+        </Typography>
+
+        <Box >
+        <Accordion sx={{marginTop:'10px',padding:'15px', borderRadius:'5px',":before":{height:'0px'}}}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography color={'rgb(59, 59, 60)'} fontSize={'1.5rem'} fontWeight={700} >Overview</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography color={'#101010'} fontSize={'1rem'} fontWeight={500}>
+          Murdoch University Dubai is a branch campus of Murdoch University, one of Australia’s emerging research universities, which is based in Perth, Western Australia. Established in 2007 in Dubai International Academic City, they moved to the heart of the impressive Dubai Knowledge Park in May 2020. The vibrant new purpose-built campus in Dubai Knowledge Park, at 2500 sq metres over two levels, is twice as large as their former home. It features world-class facilities, including a dedicated cybersecurity lab with custom-built systems and education-focused furniture and ‘touchdown’ breakout spaces to promote a collaborative teaching and learning environment.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion sx={{marginTop:'10px',padding:'15px', borderRadius:'5px',":before":{height:'0px'}}}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography color={'rgb(59, 59, 60)'} fontSize={'1.5rem'} fontWeight={700}>Entry Requirements</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography color={'#101010'} fontSize={'1rem'} fontWeight={500}>
+          Admission requirements varies from country country. Kindly contact our admissions counsellor for more informtion!
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+          
+
       
+        </Box>
+      </Box>
+
+
 
 
 
@@ -695,6 +769,7 @@ const Technology = () => {
       {/* here to help */}
       <Box
         m={"auto"}
+       
         boxSizing={"border-box"}
         display={"grid"}
         gridTemplateColumns={{ md: "2fr 3fr", xs: "1fr" }}
