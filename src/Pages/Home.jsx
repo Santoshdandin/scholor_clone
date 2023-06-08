@@ -106,7 +106,7 @@ function Home() {
 
           <Box
             position={"absolute"}
-            bottom={"-1.5rem"}
+            bottom={{xs:'-7rem',md:"-4rem"}}
             width={"100%"}
             height={"10rem"}
             display={"flex"}

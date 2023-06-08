@@ -28,7 +28,7 @@ const params = useParams();
 
   const videos = ["https://ucpbucket.s3.us-east-2.amazonaws.com/Production/UniImages/MultimediaAssets/Videos/67_MurdochUniversityDubai_MultimediaVideo_1684834762925-Welcome-to-Murdoch-University-Dubai.mp4?time=1684955267418"]
   return (
-    <Box bgcolor={'#e5e5e5'} border={'0.5px solid transparent'}>
+    <Box bgcolor={'#e5e5e5'} border={'0.1px solid transparent'}>
       {/* Navbar */}
 
       <Box
@@ -547,6 +547,7 @@ const params = useParams();
         borderRadius={"1.5rem"}
         marginBottom={"7.5rem"}
         marginTop={"7.5rem"}
+        py={{ xs: "40px", md: "0px" }}
         width={"calc(100% - 1rem)"}
       >
         <Box>
